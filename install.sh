@@ -1,6 +1,4 @@
 #!/bin/bash
-mkdir $HOME/News
-mkdir $HOME/News/stories
 sudo mkdir /usr/bin/.newsmark
 sudo curl --request GET -sL \
      --url 'https://github.com/danalves24com/RemarkableNews/releases/download/Beta/news-fetching.jar'\
