@@ -19,6 +19,7 @@ public record Feed(String title, String link, String description, String languag
                 System.out.print("*");
                 FileOutputStream fos = new FileOutputStream(root+"/News/stories/"+m.title()+".pdf");
                 Document doc = new Document();
+                doc.setMargins(90,90,20,20);
                 PdfWriter writer = PdfWriter.getInstance(doc, fos);
                 doc.open();
 
@@ -34,6 +35,7 @@ public record Feed(String title, String link, String description, String languag
 
                 Paragraph contents = new Paragraph(data);
                     contents.setSpacingBefore(40);
+                    contents.setAlignment(Element.ALIGN_JUSTIFIED);
 
                 doc.add(title); doc.add(date); doc.add(contents); doc.close();
                 writer.close();
@@ -47,6 +49,7 @@ public record Feed(String title, String link, String description, String languag
         String root = System.getProperty("user.home");
         FileOutputStream fos = new FileOutputStream(root+"/News/overview.pdf");
         Document doc = new Document();
+        doc.setMargins(90,90,20,20);
         PdfWriter writer = PdfWriter.getInstance(doc, fos);
         doc.open();
         Paragraph ttl = new Paragraph("Remarkable CNN feed", new Font(Font.FontFamily.UNDEFINED, 20));

@@ -34,19 +34,19 @@ public class Crawler {
             Document doc = request(link);
             StringBuilder data = new StringBuilder();
             for (Element element : doc.selectXpath("//div[contains(@class, 'zn-body')]")) {
-                data.append(element.text());
+                data.append("\n"+element.text());
             }
             if(data.length()==0) {
                 for (Element element : doc.selectXpath("//div[contains(@class, 'Paragraph__component')]")) {
-                    data.append(element.text());
+                    data.append("\n"+element.text());
                 }
             }
             if(data.length()>0){
                 fd.set(i, new FeedMeta(meta.title(), meta.description(), meta.link(), meta.date(), data.toString()));
-                System.out.println("[\tOK\t]");
+                System.out.println("\t[\tOK\t]");
             }else {
 
-                System.out.println("[\tERROR\t]");
+                System.out.println("\t[\tERROR\t]");
             }
         }
         System.out.println("Finished downloading all articles!\n");
