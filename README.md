@@ -1,5 +1,5 @@
 # RemarkableNews 📰
-This is a very early stage of development *(started afternoon DEC 22 2021)*, please do have patience when using 🙂.
+This is a very early stage of development *(started afternoon DEC 20 2021)*, please do have patience when using 🙂.
 ### Installation
 1. Download the `install.sh` file. ⬇️
 3. run `sudo install.sh` to install. 🏃
