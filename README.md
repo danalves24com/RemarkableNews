@@ -3,6 +3,11 @@ This is a very early stage of development *(started afternoon DEC 22 2021)*, ple
 ### Installation
 1. Download the `install.sh` file. ⬇️
 3. run `sudo install.sh` to install. 🏃
-4. execute `newsmark` to get news and then drop them to your remarkable. 🗞️
+4. prepare your system:
+```
+mkdir $HOME/News
+mkdir $HOME/News/stories
+```
+6. execute `newsmark` to get news and then drop them to your remarkable. 🗞️
 
 *tip: you can use `rclone` to move the news to a cloud folder ☁️* 
