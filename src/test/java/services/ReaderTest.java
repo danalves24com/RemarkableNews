@@ -17,6 +17,7 @@ class ReaderTest {
         Feed ff = Crawler.crawlCNNfeed(f);
         ff.write();
         ff.writeStories();
+        SystemCommand.run("rclone copy ./news remote:News");
 
     }
 }

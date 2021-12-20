@@ -12,30 +12,39 @@ import java.util.ArrayList;
 
 public record Feed(String title, String link, String description, String language, String copyright, String pubDate, ArrayList<FeedMeta> entries) {
     public void writeStories() throws  Exception{
+        System.out.print("Writing files: [");
+        String root = System.getProperty("user.home");
         for(FeedMeta m : entries) {
-            if(m.contents().length()>10) {
-
-                FileOutputStream fos = new FileOutputStream("./stories/"+m.title()+".pdf");
+            if(m.contents()!=null&&m.contents().length()>10) {
+                System.out.print("*");
+                FileOutputStream fos = new FileOutputStream(root+"/News/stories/"+m.title()+".pdf");
                 Document doc = new Document();
                 PdfWriter writer = PdfWriter.getInstance(doc, fos);
                 doc.open();
-                Paragraph title = (new Paragraph(m.title(), new Font(Font.FontFamily.UNDEFINED, 30)));
-                title.setAlignment(1);
+
+                Paragraph title = (new Paragraph(m.title(), new Font(Font.FontFamily.UNDEFINED, 50)));
+                    title.setAlignment(1);
+
                 Paragraph date = new Paragraph(pubDate);
+                    date.setSpacingBefore(10);
+
                 String data = m.contents();
-                data = data==null?"no data":data;
+                    data = data==null?"no data":data;
+
                 Paragraph contents = new Paragraph(data);
-                contents.setSpacingBefore(40);
-                doc.add(title); doc.add(date); doc.add(contents);
-                doc.close();
+                    contents.setSpacingBefore(40);
+
+                doc.add(title); doc.add(date); doc.add(contents); doc.close();
                 writer.close();
             }else {
 
             }
         }
+        System.out.println("]\nAll files written");
     }
     public void write() throws Exception{
-        FileOutputStream fos = new FileOutputStream("./overview.pdf");
+        String root = System.getProperty("user.home");
+        FileOutputStream fos = new FileOutputStream(root+"/News/overview.pdf");
         Document doc = new Document();
         PdfWriter writer = PdfWriter.getInstance(doc, fos);
         doc.open();

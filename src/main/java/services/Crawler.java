@@ -25,8 +25,10 @@ public class Crawler {
     }
 
     public static Feed crawlCNNfeed(Feed feed) {
+        System.out.println("Crawling Articles ["+feed.entries().size()+"]:");
         ArrayList<FeedMeta> fd = feed.entries();
         for(int i = 0 ; i < fd.size(); i += 1) {
+            System.out.print("Downloading article [#"+i+"]\t");
             FeedMeta meta = fd.get(i);
             String link = meta.link();
             Document doc = request(link);
@@ -41,9 +43,13 @@ public class Crawler {
             }
             if(data.length()>0){
                 fd.set(i, new FeedMeta(meta.title(), meta.description(), meta.link(), meta.date(), data.toString()));
+                System.out.println("[\tOK\t]");
+            }else {
+
+                System.out.println("[\tERROR\t]");
             }
-            System.out.println(fd.get(i).contents().length());
         }
+        System.out.println("Finished downloading all articles!\n");
         return feed;
     }
 }
